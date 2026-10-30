@@ -179,3 +179,7 @@ require (
 
 // Remember you can use Go workspaces to avoid using replace directives in multiple go.mod files
 // Use what is best for your personal workflow. See CONTRIBUTING.md for more information
+
+// The overlapping-union fragment-spread fix is not in any released engine, so the
+// router builds against our fork's integration tag until upstream ships it.
+replace github.com/wundergraph/graphql-go-tools/v2 => github.com/Angel-Studios/graphql-go-tools/v2 v2.30.0-angel.1

@@ -119,7 +119,7 @@ jobs:
     needs: [filter-changes, check-labels-and-engine-changes]
     # This is a limitation of GitHub. Only organization members can push to GitHub Container Registry
     # For now, we will disable the push to the GitHub Container Registry for external contributor
-    if: ${{ needs.filter-changes.outputs.router_changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-labels-and-engine-changes.outputs.has_skip_label != 'true'}}
+    if: ${{ needs.filter-changes.outputs.router_changed == 'true' && github.repository == 'wundergraph/cosmo' && needs.check-labels-and-engine-changes.outputs.has_skip_label != 'true'}}
     runs-on: ubuntu-latest
     outputs:
       image_ref: ${{ steps.build_push_image.outputs.image_ref }}

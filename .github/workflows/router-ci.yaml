@@ -33,7 +33,7 @@ env:
 jobs:
   # Runs for forks without access to repository secrets
   build_test_fork:
-    if: github.event.pull_request.head.repo.full_name != github.repository
+    if: github.repository != 'wundergraph/cosmo'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -104,7 +104,7 @@ jobs:
 
   # Runs for forks to test docker image is building
   build_image_fork:
-    if: github.event.pull_request.head.repo.full_name != github.repository
+    if: github.repository != 'wundergraph/cosmo'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
@@ -126,7 +126,7 @@ jobs:
   # Runs for people with write access to the repository
   # that have access to the secrets
   build_test:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.repository == 'wundergraph/cosmo'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -429,7 +429,7 @@ jobs:
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   image_scan:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.repository == 'wundergraph/cosmo'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
@@ -462,7 +462,7 @@ jobs:
   build_push_image:
     # This is a limitation of GitHub. Only organization members can push to GitHub Container Registry
     # For now, we will disable the push to the GitHub Container Registry for external contributors
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.repository == 'wundergraph/cosmo'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
